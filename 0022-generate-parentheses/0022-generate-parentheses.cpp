@@ -4,9 +4,13 @@ public:
     
     void generate(string curr, int i,int mxSize,int val){
         if(i >= mxSize){
-            if(val == 0){
+            if(val == 0)
                 ans.push_back(curr);
-            }
+            
+            return ;
+        }
+        
+        if( val > mxSize/2 ){
             return ;
         }
         

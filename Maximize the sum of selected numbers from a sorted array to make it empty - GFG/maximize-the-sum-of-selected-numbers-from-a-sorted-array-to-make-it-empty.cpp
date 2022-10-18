@@ -14,8 +14,6 @@ class Solution{
             mp[a[i]]++;
         }
         
-        sort(a,a+n);
-        
         for(int i = n - 1 ; i >= 0 ; i--){
             if(mp[a[i]]){
                 sum += a[i];

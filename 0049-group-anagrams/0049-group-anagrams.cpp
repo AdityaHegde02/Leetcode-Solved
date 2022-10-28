@@ -1,20 +1,13 @@
 class Solution {
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
-        int n = strs.size();
         unordered_map<string,vector<string>> isThere;
         vector<vector<string>> ans;
         
         for(string &i : strs){
-            vector<int> count(26,0);
-            for(char &j:i){
-                count[j - 'a']++;
-            }
-            string key;
-            for(auto &x : count){
-                key += to_string(x) + " ";
-            }
-            isThere[key].push_back(i);
+            string key = i;
+            sort(i.begin(),i.end());
+            isThere[i].push_back(key);
         }
         
         for(auto &i : isThere){

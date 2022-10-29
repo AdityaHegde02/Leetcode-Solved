@@ -10,11 +10,9 @@ public:
         
         int len = 0;
         int currLen = 0;
+        
         for(int i = 0; i < n; i++){
-            if(s.count(nums[i] - 1)){
-                continue;
-            }
-            else{
+            if(s.count(nums[i] - 1) == 0){
                 currLen = 1;
                 int j = 1;
                 while(s.count(nums[i] + j++)){

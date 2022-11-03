@@ -1,8 +1,8 @@
 class Solution {
 public:
     int longestPalindrome(vector<string>& words) {
-        int n = words.size();
         unordered_map<string,int> mp;
+        
         for(auto &i : words){
             mp[i]++;
         }

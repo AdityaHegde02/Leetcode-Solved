@@ -1,17 +1,26 @@
 class Solution {
 public:
-    static bool cmp(int& a,int& b){
-        string s = to_string(a);
-        string t = to_string(b);
-        return (s < t);
+    void generate(int num,int n,vector<int> &ans){
+        if(num > n){
+            return ;
+        }
+        
+        ans.push_back(num);
+        for(int i = 0; i < 10; i++){
+            num = num*10 + i;
+            generate(num,n,ans);
+            num /= 10;
+        }
     }
     
     vector<int> lexicalOrder(int n) {
-        vector<int> ans(n);
-        for(int i = 1; i <= n; i++){
-            ans[i - 1] = i;
+        vector<int> ans;
+        
+        for(int i = 1 ; i < 10; i++){
+            int num = i;
+            generate(num,n,ans);
         }
-        sort(ans.begin(),ans.end(),cmp);
+        
         return ans;
     }
 };

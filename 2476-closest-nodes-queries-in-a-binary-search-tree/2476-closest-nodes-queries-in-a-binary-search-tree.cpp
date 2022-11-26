@@ -24,11 +24,15 @@ public:
         vector<vector<int>> ans;
         vector<int> sorted;
         inorder(root,sorted);
-        for(int i = 0; i < queries.size() ; i++){
+        int n = sorted.size();
+        int q = queries.size();
+        
+        for(int i = 0; i < q ; i++){
             int st = -1,en = -1;
             int target = queries[i];
             auto it = lower_bound(sorted.begin(),sorted.end(),target);
             int idx = it - sorted.begin();
+            
             if(it != sorted.end() and idx > 0){
                 if(target == sorted[idx]){
                     st = target;
@@ -39,6 +43,7 @@ public:
                     st = sorted[idx- 1];
                 }
             }
+            
             else if(idx == 0){
                 if(target == sorted[idx]){
                     st = target;
@@ -49,7 +54,7 @@ public:
                 }
             }
             else{
-                st = sorted[sorted.size() - 1];
+                st = sorted[n - 1];
             }
             ans.push_back({st,en});
         }

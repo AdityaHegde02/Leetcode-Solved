@@ -47,6 +47,6 @@ long long numOfWays(int N, int M)
             }
         }
     }
-    
+    // cout << attacks << endl;
     return (total - attacks);
 }

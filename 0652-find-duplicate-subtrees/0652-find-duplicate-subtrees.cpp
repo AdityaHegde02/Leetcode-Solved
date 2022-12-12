@@ -12,7 +12,7 @@
 class Solution {
 public:
     unordered_map<string,int> count;
-    unordered_map<string,TreeNode*> nodes;
+    vector<TreeNode*> ans;
     
     string solve(TreeNode* &root){
         if(!root){
@@ -23,27 +23,17 @@ public:
         string b = solve(root->right);
         
         a += to_string(root->val) + '_' + a + '_'+ b + '_';
-        if(count.find(a) != count.end()){
-            count[a]++;
+        if(count[a] == 1){
+            ans.push_back(root);
         }
-        else{
-            count[a] = 1;
-        }
-        
-        if(nodes.find(a) == nodes.end())
-            nodes[a] = root;
+    
+        count[a]++;
         
         return a;
     }
     
     vector<TreeNode*> findDuplicateSubtrees(TreeNode* root) {
-        vector<TreeNode*> ans;
         solve(root);
-        for(auto &i:count){
-            if(i.second > 1){
-                ans.push_back(nodes[i.first]);
-            }
-        }
         return ans;
     }
 };

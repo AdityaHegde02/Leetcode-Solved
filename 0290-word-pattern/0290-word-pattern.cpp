@@ -6,7 +6,7 @@ public:
         stringstream ss(s);
         string word;
         vector<string> words;
-        unordered_map<string,bool> isMapped;
+        unordered_map<string,bool> isMapped;  // to check if word is already mapped
         while(ss >> word){
             words.push_back(word);
         }

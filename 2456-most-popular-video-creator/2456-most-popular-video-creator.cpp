@@ -19,7 +19,7 @@ public:
         }
         unordered_map<string,string> mostViewId;
         for(int i = 0; i < c.size(); i++){
-            string small = "zzzzzz";
+            string small = "zzzzz";
             if(mostViewPer[c[i]] == v[i]){
                 small = min(small,id[i]);
             }

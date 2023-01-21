@@ -27,7 +27,7 @@ public:
             return ;
         }
         
-        for(int j = i; j < s.size(); j++){
+        for(int j = i; j < i + 3 and j < s.size(); j++){
             if(isValid(s.substr(i,j - i + 1))){
                 temp.push_back(s[j]);
                 temp.push_back('.');

@@ -13,7 +13,7 @@ class Solution {
         int n = s.size();
         int mx = 0;
         string left;
-        for(int i = 0; i < n - 1; i++){
+        for(int i = 0; i < n; i++){
             left += s[i];
             string b = s.substr(i + 1,i + 1);
             if(left == b){

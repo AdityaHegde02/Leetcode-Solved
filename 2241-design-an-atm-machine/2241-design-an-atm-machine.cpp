@@ -1,6 +1,7 @@
 class ATM {
 public:
-    vector<long long int> notes,val;
+    vector<long long int> notes;
+    vector<int> val;
     
     ATM() {
         for(int i = 0; i < 5; i++){
@@ -20,7 +21,7 @@ public:
     }
     
     vector<int> withdraw(int amount) {
-        vector<long long int> temp = notes; 
+        vector<long long int> temp = notes;
         vector<int> ans(5,0);
         for(int i = 4;i >= 0; i--){
             if(notes[i]){

@@ -3,22 +3,22 @@ public:
     int minDominoRotations(vector<int>& tops, vector<int>& bottoms) {
         int n = tops.size();
         unordered_map<int,int> mp;
-        unordered_set<int> st(tops.begin(),tops.end());
-        if(st.size() == 1){
-            return 0;
-        }
-        st.clear();
-        for(int &i : bottoms){
-            st.insert(i);
-        }
-        if(st.size() == 1){
-            return 0;
-        }
+    
         for(int &i : tops){
             mp[i]++;
         }
+        if(mp.size() == 1){
+            return 0;
+        }
+        
+        unordered_set<int> st;
         for(int &i : bottoms){
+            st.insert(i);
             mp[i]++;
+        }
+        
+        if(st.size() == 1){
+            return 0;
         }
         
         int mn = INT_MAX;

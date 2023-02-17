@@ -13,8 +13,10 @@ class Solution {
 public:
     // inorder
     void solve(TreeNode* root,TreeNode* &prevNode,int &minDiff){
-
-        if(root->left)
+        if(!root){
+            return ;
+        }
+        // if(root->left)
             solve(root->left,prevNode,minDiff);
         
         if(prevNode != NULL){
@@ -23,7 +25,7 @@ public:
                           
         prevNode = root;
         
-        if(root->right)
+        // if(root->right)
             solve(root->right, prevNode, minDiff);
     }
     

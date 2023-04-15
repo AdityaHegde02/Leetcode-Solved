@@ -33,13 +33,13 @@ class Solution {
     int totalTime(int n, vector<int> &arr, vector<int> &time) {
         unordered_set<int> st;
         long long int ans = 0;
-        for(int i = 0; i < n; i++){
+        st.insert(arr[0]);
+        for(int i = 1; i < n; i++){
             if(st.find(arr[i]) != st.end()){
                 ans += time[arr[i] - 1];
             }
             else{
-                if(i != 0)
-                    ans++;
+                ans++;
             }
             st.insert(arr[i]);
         }

@@ -16,7 +16,7 @@ class Solution{
             if(sum < 0){
                 sum = 0;
             }
-            sum += (long long)arr[i];
+            sum += arr[i];
             if(ans < sum){
                 ans = sum;
             }

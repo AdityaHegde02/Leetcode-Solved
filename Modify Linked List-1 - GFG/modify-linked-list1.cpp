@@ -40,33 +40,59 @@ struct Node
         data = x;
         next = NULL;
     }
-    
 };
 */
 class Solution{
     public:
     struct Node* modifyTheList(struct Node *head)
     {
-        vector<int> a;
-        Node* temp = head;
-        while(temp != NULL){
-            a.push_back(temp->data);
-            temp = temp -> next;
+        // find the secondhead
+        Node* secondHead = NULL;
+        Node* slow = head;
+        Node* fast = head;
+        Node* firstTail = NULL;
+        while(fast and fast->next){
+            firstTail = slow;
+            slow = slow->next;
+            fast = fast->next->next;
         }
         
-        int sz = a.size();
-        for(int i = 0; i < (sz/2); ++i){
-            int temp = a[i];
-            a[i] = (a[sz - i - 1]) - a[i];
-            a[sz - i - 1] = temp;
+        secondHead = slow;
+     
+        // reverse secondhead
+        Node* prev = NULL;
+        Node* curr = secondHead;
+        Node* next;
+        while(curr){
+            next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
         }
         
-        int i = 0;
-        temp = head;
-        while(temp){
-            temp -> data = a[i++];
-            temp = temp -> next;
+        firstTail->next = prev;
+        
+        Node* t1 = head;
+        Node* t2 = prev;
+        while(t1 != prev and t2){
+            int temp = t1->data;
+            t1->data = (t2->data) - (t1->data);
+            t2->data = temp;
+            t1 = t1->next;
+            t2 = t2->next;
         }
+        
+        Node* prevNow = NULL;
+        curr = prev;
+        
+        while(curr){
+            next = curr->next;
+            curr->next = prevNow;
+            prevNow = curr;
+            curr = next;
+        }
+        
+        firstTail->next = prevNow;
         
         return head;
     }

@@ -13,14 +13,10 @@ public:
     void checkOut(int id, string stationName, int t) {
         string startStation = in[id].first;
         int startTime = in[id].second;
+        in.erase(id);
         double time = (t - startTime);
         string temp = startStation + ":" + stationName;
-        if(mp.find(temp) == mp.end()){
-            mp[temp] = {1,time};
-        }
-        else{
-            mp[temp] = {mp[temp].first + 1,mp[temp].second + time};
-        }
+        mp[temp] = {mp[temp].first + 1,mp[temp].second + time};
     }
     
     double getAverageTime(string startStation, string endStation) {

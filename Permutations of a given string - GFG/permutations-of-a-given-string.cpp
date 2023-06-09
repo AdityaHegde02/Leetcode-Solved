@@ -3,37 +3,38 @@
 using namespace std;
 
 // } Driver Code Ends
-
 class Solution
 {
 	public:
-	    set<string> unique;
-	
-	    void generate(int idx,int n,string &s,vector<string> &ans){
-	        if(idx == n){
-	            if(unique.count(s) == 0){
-	                ans.push_back(s);
-	                unique.insert(s);
-	            }
+	    set<string> st;
+	    
+	    void solve(int idx,string &temp,string &s,vector<int> &vis){
+	        if(idx >= s.size()){
+	            st.insert(temp);
 	            return ;
-	        }
+	        }    
 	        
-	        for(int i = idx; i < s.size() ; i++){
-	            swap(s[i],s[idx]);
-	            generate(idx + 1,n,s,ans);
-	            swap(s[i],s[idx]);
+	        for(int i = 0; i < s.size(); i++){
+	            if(!vis[i]){
+	                vis[i] = 1;
+	                temp += s[i];
+	                solve(idx + 1,temp,s,vis);
+	                temp.pop_back();
+	                vis[i] = 0;
+	            }
 	        }
 	    }
 	    
-		vector<string>find_permutation(string S)
+		vector<string>find_permutation(string s)
 		{
-		    vector<string> ans;
-		    generate(0,S.size(),S,ans);
-		    sort(ans.begin(),ans.end());
+		    int n = s.size();
+		    vector<int> vis(n,0);
+		    string temp = "";
+		    solve(0,temp,s,vis);
+		    vector<string> ans(st.begin(),st.end());
 		    return ans;
 		}
 };
-
 
 
 

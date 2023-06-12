@@ -8,27 +8,31 @@ public:
         }
         
         int mx = 0;
-        bool f = 0;
+        bool single = 0;
            
         for(int i = 0; i < words.size() ; i++){
-            string b = words[i];
-            string a = b;
+            string a = words[i];
+            string b = a;
             reverse(b.begin(),b.end());
-            if(a[0] == a[1] and mp[a] % 2 == 0){
-                mx += 2*mp[a];
-                mp[a] = 0;
+            if(a[0] == a[1]){
+                if(mp[a] % 2){
+                    if(single){
+                        mx += 2*(mp[a] - 1);
+                        mp[a] = 1;
+                    }
+                    else{
+                        mx += 2*(mp[a]);
+                        mp[a] = 0;
+                        single = 1;
+                    }
+                }
+                else{
+                    mx += 2*(mp[a]);
+                    mp[a] = 0;
+                }
             }
-            else if(a[0] == a[1] and mp[a] % 2 and !f){
-                f = 1;
-                mx += 2*mp[a];
-                mp[a] = 0;
-            }
-            else if(a[0] == a[1] and mp[a] % 2){
-                mx += 2*(mp[a]-1);
-                mp[a] = 0;
-            }
-            else if(a[0] != a[1] and mp[b]){
-                mx += 4*(min(mp[a],mp[b]));
+            else if(mp[b]){
+                mx += 4*min(mp[a],mp[b]);
                 mp[a] = 0;
                 mp[b] = 0;
             }

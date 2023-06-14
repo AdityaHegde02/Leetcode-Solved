@@ -8,10 +8,7 @@ using namespace std;
 class Solution {
   public:
     long long maxDiamonds(int A[], int N, int K) {
-        priority_queue<long long> maxHeap;
-        for(int i = 0; i < N; i++){
-            maxHeap.push(A[i]);
-        }
+        priority_queue<long long> maxHeap(A,A + N);
         
         long long ans = 0;
         long long top;

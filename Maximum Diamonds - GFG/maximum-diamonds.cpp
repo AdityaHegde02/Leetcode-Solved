@@ -16,10 +16,10 @@ class Solution {
         long long ans = 0;
         
         while(K--){
-            int top = maxHeap.top();
+            long long top = maxHeap.top();
             maxHeap.pop();
             maxHeap.push(top/2);
-            ans += (long long)top;
+            ans += top;
         }
         
         return ans;

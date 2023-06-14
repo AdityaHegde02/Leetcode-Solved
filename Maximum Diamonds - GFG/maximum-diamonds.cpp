@@ -17,9 +17,9 @@ class Solution {
         
         while(K--){
             int top = maxHeap.top();
-            maxHeap.pop();
             maxHeap.push(top/2);
             ans += top;
+            maxHeap.pop();
         }
         
         return ans;

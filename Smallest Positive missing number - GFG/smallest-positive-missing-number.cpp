@@ -11,23 +11,18 @@ class Solution
     //Function to find the smallest positive number missing from the array.
     int missingNumber(int arr[], int n) 
     { 
-        sort(arr,arr + n);
-        int i = 0,curr = 1;
-        while(i < n and arr[i] <= 0){
-            i++;
+        unordered_set<int> st;
+        for(int i = 0; i < n; i++){
+            st.insert(arr[i]);
         }
         
-        while(i < n){
-            if(arr[i] != curr){
-                return curr;
+        for(int i = 1; ; i++){
+            if(st.find(i) == st.end()){
+                return i;
             }
-            while(i < n and arr[i] == curr){
-                i++;
-            }
-            curr++;
         }
         
-        return curr;
+        return -1;
     } 
 };
 

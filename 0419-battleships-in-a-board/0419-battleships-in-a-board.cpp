@@ -1,13 +1,13 @@
 class Solution {
 public:
-    vector<int> dir = {0,-1,0,1,0};
+    vector<int> dir = {0,1,0};
     void dfs(int i,int j,int m,int n,vector<vector<char>>& board){
         if(i < 0 or i >= m or j < 0 or j >= n or board[i][j] == '.'){
             return ;
         }
         
         board[i][j] = '.';
-        for(int d = 0; d < 4; d++){
+        for(int d = 0; d < 2; d++){
             int ni = i + dir[d], nj = j + dir[d + 1];
             dfs(ni,nj,m,n,board);
         }

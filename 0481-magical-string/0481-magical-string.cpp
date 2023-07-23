@@ -6,13 +6,13 @@ public:
         while(s.size() <= n){
             if(curr == 1){
                 for(int i = 0; i < times; i++){
-                    s += to_string(curr);
+                    s += curr + '0';
                 }
                 curr = 2;
             }
             else{
                 for(int i = 0; i < times; i++){
-                    s += to_string(curr);
+                    s += curr + '0';
                 }
                 curr = 1;
             }

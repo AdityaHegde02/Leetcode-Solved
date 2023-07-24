@@ -41,26 +41,26 @@ class Solution
 {
     public:
     //Function to return list containing elements of right view of binary tree.
+    map<int,int> mp;
+    
+    void dfs(Node* root,int level){
+        if(!root){
+            return ;
+        }
+        
+        mp[level] = root->data;
+        dfs(root->left,level + 1);
+        dfs(root->right,level + 1);
+    }
+    
     vector<int> rightView(Node *root)
     {
        vector<int> ans;
-       queue<Node*> q;
-       q.push(root);
-       while(!q.empty()){
-           int n = q.size();
-           for(int i = 0; i < n; i++){
-               auto front = q.front();
-               q.pop();
-               if(i == n - 1){
-                   ans.push_back(front->data);
-               }
-               if(front->left){
-                   q.push(front->left);
-               }
-               if(front->right){
-                   q.push(front->right);
-               }
-           }
+       
+       dfs(root,0);
+       
+       for(auto &i : mp){
+           ans.emplace_back(i.second);
        }
        
        return ans;

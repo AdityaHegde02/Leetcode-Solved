@@ -1,14 +1,13 @@
 class Solution {
 public:
-    vector<int> dir = {0,-1,0,1,0};
+    vector<int> dir = {0,-1,0,1,0};         // 4 directions
     
     int getLongestPath(int i,int j,int m,int n,vector<vector<int>> &a,vector<vector<int>> &vis){
         if(vis[i][j] > 0){
-            return vis[i][j];
+            return vis[i][j];               // If its already computed
         }
         
-        int mx = 0;
-        vis[i][j] = -1;
+        int mx = 0;                        // total mx for this tile now 
         for(int d = 0; d < 4; d++){
             int nx = i + dir[d], ny = j + dir[d + 1];
             if(nx >= 0 and nx < m and ny >= 0 and ny < n){

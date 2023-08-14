@@ -9,15 +9,16 @@ public:
     vector<int> singleNumber(vector<int> nums) 
     {
         vector<int> ans;
-        sort(nums.begin(),nums.end());
-        for(int i = 0; i < nums.size(); ){
-            if(nums[i] != nums[i + 1]){
-                ans.push_back(nums[i]);
-                i++;
+        unordered_map<int,int> mp;
+        for(auto &i : nums)
+            mp[i]++;
+        for(auto &i : mp){
+            if(i.second == 1){
+                ans.push_back(i.first);
             }
-            else{
-                i += 2;
-            }
+        }
+        if(ans[0] > ans[1]){
+            swap(ans[0],ans[1]);
         }
         return ans;
     }

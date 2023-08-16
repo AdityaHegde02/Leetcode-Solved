@@ -12,40 +12,38 @@
 class Solution {
 public:
     vector<int> rightSideView(TreeNode* root) {
-        vector<int> ans;
-        if(!root){
-            return ans;
-        }
-        queue<TreeNode*> q;
-        q.push(root);
-        q.push(nullptr);
-        while(!q.empty()){
-            TreeNode* top = q.front();
+        vector<int>ans;
+         if(root==NULL)
+             return ans;
+        queue<pair<TreeNode*,int>>q;
+        unordered_map<int,int>mp;
+        
+        q.push({root,0});
+
+        while(!q.empty())
+        {
+            TreeNode* temp=q.front().first;
+            int lvl=q.front().second;
             q.pop();
-            TreeNode* topnow = q.front();
-            if(top and topnow==nullptr){
-                ans.push_back(top->val);
-                if(top->left){
-                    q.push(top->left);
-                }
-                if(top->right){
-                    q.push(top->right);
-                }
+            
+            mp[lvl]=temp->val;
+            if(temp->left)
+            {
+                q.push({temp->left,lvl+1});
             }
-            else if(top){
-                if(top->left){
-                    q.push(top->left);
-                }
-                if(top->right){
-                    q.push(top->right);
-                }
-            }
-            else{
-                if(!q.empty()){
-                    q.push(nullptr);
-                }
+            if(temp->right)
+            {
+                q.push({temp->right,lvl+1});
             }
         }
+
+        int sz = mp.size();
+   
+        for(int i = 0; i < sz; i++)
+        {
+            ans.push_back(mp[i]);
+        }
+
         return ans;
     }
 };

@@ -11,9 +11,9 @@ public:
 	
 	int countTriplet(int arr[], int n)
 	{
-	    unordered_map<int,int> mp;
+	    unordered_set<int> mp;
 	    for(int i = 0; i < n; i++){
-	        mp[arr[i]]++;
+	        mp.insert(arr[i]);
 	    }
 	    
 	    int ans = 0;

@@ -11,18 +11,24 @@ public:
 	
 	int countTriplet(int arr[], int n)
 	{
-	    unordered_set<int> mp;
-	    for(int i = 0; i < n; i++){
-	        mp.insert(arr[i]);
-	    }
-	    
+	    sort(arr,arr+n);
 	    int ans = 0;
 	    
-	    for(int i = 0; i < n; i++){
-	        for(int j = i + 1; j < n; j++){
-	            int cursum = arr[i] + arr[j];
-	            if(mp.find(cursum) != mp.end()){
+	    for(int i = n - 1; i >= 0; i--){
+	        int totalsum = arr[i];
+	        int low = 0, high = i - 1;
+	        while(low < high){
+	            int currSum = arr[low] + arr[high];
+	            if(currSum == totalsum){
 	                ans++;
+	                low++;
+	                high--;
+	            }
+	            else if(currSum < totalsum){
+	                low++;
+	            }	        
+	            else{
+	                high--;
 	            }
 	        }
 	    }

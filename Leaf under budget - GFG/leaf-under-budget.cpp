@@ -114,35 +114,38 @@ struct Node
 class Solution
 {
 public:
-    
-    void solve(Node *root,int level,vector<int> &leafLevels){
-        if(!root){
-            return;
-        }
-        
-        if(!root->left and !root->right){
-            leafLevels.push_back(level);
-        }
-        
-        solve(root->left,level + 1,leafLevels);
-        solve(root->right,level + 1,leafLevels);
-    }
-    
     int getCount(Node *root, int k)
     {
         if(!root){
             return 0;
         }
         int ans = 0;
-        vector<int> leafLevels;
-        solve(root,1,leafLevels);
-        sort(leafLevels.begin(),leafLevels.end());
-        for(int i = 0; i < leafLevels.size(); i++){
-            k -= leafLevels[i];
-            if(k >= 0){
-                ans++;
+        
+        queue<Node*> q;
+        q.push(root);
+        
+        int level = 1;
+        while(!q.empty() and k >= 0){
+            int n = q.size();
+            for(int i = 0; i < n and k >= 0; i++){
+                auto front = q.front();
+                q.pop();
+                if(!front->left and !front->right){
+                    k -= level;
+                    if(k >= 0){
+                        ans++;
+                    }
+                }
+                if(front->left){
+                    q.push(front->left);
+                }
+                if(front->right){
+                    q.push(front->right);
+                }
             }
+            level++;
         }
+        
         return ans;
     }
 };

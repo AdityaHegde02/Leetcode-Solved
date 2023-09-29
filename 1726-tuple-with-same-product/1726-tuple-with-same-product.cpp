@@ -1,11 +1,11 @@
 class Solution {
 public:
     int nCr(int n, int r){
-        if (r > n)
-             return 0;
-        if (r == 0 || r == n)
-            return 1;
-        return nCr(n - 1, r - 1) + nCr(n - 1, r);
+        long sum = 1;
+        for(int i = 1; i <= r; i++){
+            sum = sum * (n - r + i) / i;
+        }
+        return sum;
     }
     
     int tupleSameProduct(vector<int>& nums) {

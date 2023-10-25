@@ -8,17 +8,16 @@ class Solution
   public:
     int minOperation(int n)
     {
-        int ops = 0;
-        while(n != 0){
-            if(n % 2){
-                n--;
-            }
-            else{
-                n /= 2;
-            }
-            ops++;
+        vector<int> dp(n + 1,INT_MAX);
+        dp[0] = 0;
+        dp[1] = 1;
+        for(int i = 2; i <= n; i++){
+            if(i % 2)
+                dp[i] = 1 + dp[i - 1];
+            else
+                dp[i] = min(1 + dp[i - 1], 1 + dp[i/2]);
         }
-        return ops;
+        return dp[n];
     }
 };
 

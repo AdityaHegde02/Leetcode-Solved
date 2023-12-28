@@ -41,7 +41,7 @@ public:
                 return dp[i][j] = solve(i + 1,j + 1,m,n,wild,pattern);
             }
             else{
-                return false;
+                return dp[i][j] = false;
             }
         }
         

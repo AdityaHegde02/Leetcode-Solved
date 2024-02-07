@@ -1,19 +1,27 @@
 class Solution {
 public:
+    static bool mycmp(const pair<char,int> &a,const pair<char,int> &b){
+        return (a.second>b.second);
+    }
+    
     string frequencySort(string s) {
-        unordered_map<char, int> freq;
-        for (auto a : s) freq[a]++;
-        
-        vector<vector<char>> buckets(s.size()+1);
-        for (auto [a, frq] : freq) buckets[frq].push_back(a);
-        
-        string res;
-        for (int i = s.size(); i > 0; i--) {
-            for (auto ch : buckets[i]) {
-                res += string(i, ch);
+        int n=s.size();
+        unordered_map<char,int> mp;
+        for(int i=0;i<n;i++){
+            mp[s[i]]++;
+        }
+        vector<pair<char,int>> a;
+        for(auto i:mp){
+            a.push_back({i.first,i.second});
+        }
+        sort(a.begin(),a.end(),mycmp);
+        string ans="";
+        for(int i=0;i<a.size();i++){
+            while(a[i].second){
+                ans+=a[i].first;
+                a[i].second--;
             }
         }
-        
-        return res;
+        return ans;
     }
 };

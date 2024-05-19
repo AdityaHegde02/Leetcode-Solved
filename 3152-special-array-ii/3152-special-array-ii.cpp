@@ -11,8 +11,9 @@ public:
         
         for(int i = 0; i < queries.size(); i++){
             int s = queries[i][0], e = queries[i][1] - 1;
-            for(auto &j : fail){
-                if(j >= s and j <= e){
+            int idx = lower_bound(fail.begin(),fail.end(),s) - fail.begin();
+            for(int j = idx; j < fail.size(); j++){
+                if(fail[j] <= e){
                     ans.push_back(0);
                     break;
                 }
